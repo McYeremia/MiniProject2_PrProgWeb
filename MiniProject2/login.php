@@ -46,8 +46,10 @@ if (isset($_POST["login"])){
   <header>
     <img src="gambar/LogoHKputihhitam.png" alt="LogoHKputih">
     <a href="index.php" class="pilihan">Home</a>
+
     <a href="daftarkonser.php" class="pilihan">Semua Konser</a>
-    <a href="tentang.html" class="pilihan">Tentang</a>
+    <a href="tentang.php" class="pilihan">Tentang</a>
+
   </header>
 
   <div class="bgatas">
@@ -89,7 +91,7 @@ if (isset($_POST["login"])){
           </tr>
           <tr>
             <td colspan="2" class="submitt">
-              <button type="submit" name="login" value="Login">Login
+              <button class="btn" type="submit" name="login" value="Login">Login
             </td>
           </tr>
         </table>
