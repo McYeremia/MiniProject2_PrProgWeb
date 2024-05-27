@@ -46,8 +46,10 @@ if (isset($_POST["login"])){
   <header>
     <img src="gambar/LogoHKputihhitam.png" alt="LogoHKputih">
     <a href="index.php" class="pilihan">Home</a>
-    <a href="daftarkonser.html" class="pilihan">Semua Konser</a>
+
+    <a href="daftarkonser.php" class="pilihan">Semua Konser</a>
     <a href="tentang.php" class="pilihan">Tentang</a>
+
   </header>
 
   <div class="bgatas">
