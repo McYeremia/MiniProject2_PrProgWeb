@@ -21,7 +21,7 @@ require "functions.php";
 </head>
 <body>
     <header>
-        <a href="index.php"></a><img src="gambar/LogoHKputihhitam.png" alt="LogoHKputih">
+        <a href="index.php"><img src="gambar/LogoHKputihhitam.png" alt="LogoHKputih"></a>
         <a href="index.php" class="pilihan">Home</a>
         <a href="daftarkonser.php" class="pilihan">Semua Konser</a>
         <a href="tentang.php" class="pilihan">Tentang</a>
@@ -116,16 +116,16 @@ require "functions.php";
                 <table border="0">
                     <tr>
                         <td>
-                            <img src="logososmed/facebook.png" alt="fb">
+                            <a href="https://www.facebook.com"><img src="logososmed/facebook.png" alt="fb"></a>
                         </td>
                         <td>
-                            <img src="logososmed/instagram (2).png" alt="ig">
+                            <a href="https://www.instagram.com/"><img src="logososmed/instagram (2).png" alt="ig"></a>
                         </td>
                         <td>
-                            <img src="logososmed/tiktok.png" alt="tiktok">
+                            <a href="https://www.tiktok.com/id-ID/"><img src="logososmed/tiktok.png" alt="tiktok"></a>
                         </td>
                         <td>
-                            <img src="logososmed/twitter.png" alt="x">
+                            <a href="https://x.com/?lang=en"><img src="logososmed/twitter.png" alt="x"></a>
                         </td>
                     </tr>
                 </table>
