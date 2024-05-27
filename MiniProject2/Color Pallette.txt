@@ -1,0 +1,5 @@
+Color Pallette:
+#5893a5 - Biru Muda
+#000529 - Biru Tua
+#f9fff3 - Cream(background)
+#f2796e - Oren
