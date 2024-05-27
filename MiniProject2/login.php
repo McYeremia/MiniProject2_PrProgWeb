@@ -13,7 +13,7 @@ if (isset($_POST["login"])){
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+    $result = mysqli_query($conn, "SELECT * FROM user_data WHERE username = '$username'");
 
     if(mysqli_num_rows($result) === 1){
         $row = mysqli_fetch_assoc($result);
@@ -47,7 +47,7 @@ if (isset($_POST["login"])){
     <img src="gambar/LogoHKputihhitam.png" alt="LogoHKputih">
     <a href="index.php" class="pilihan">Home</a>
     <a href="daftarkonser.html" class="pilihan">Semua Konser</a>
-    <a href="tentang.html" class="pilihan">Tentang</a>
+    <a href="tentang.php" class="pilihan">Tentang</a>
   </header>
 
   <div class="bgatas">
@@ -89,7 +89,7 @@ if (isset($_POST["login"])){
           </tr>
           <tr>
             <td colspan="2" class="submitt">
-              <button type="submit" name="login" value="Login">Login
+              <button class="btn" type="submit" name="login" value="Login">Login
             </td>
           </tr>
         </table>
