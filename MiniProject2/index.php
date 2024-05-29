@@ -68,37 +68,37 @@ require "functions.php";
         <table border="0">
             <tr>
                 <td>
-                    <a href="detailkonser1.php"><img src="posterkonser/poster1.png" alt="gmbrposter1" class="ukuranposter"></a>
+                    <a href="detailkonser.php"><img src="posterkonser/poster1.png" alt="gmbrposter1" class="ukuranposter"></a>
                 </td>
                 <td>
-                    <a href="detailkonser2.php"><img src="posterkonser/poster2.png" alt="gmbrposter2" class="ukuranposter"></a>
+                    <a href="detailkonser.php"><img src="posterkonser/poster2.png" alt="gmbrposter2" class="ukuranposter"></a>
                 </td>
                 <td>
-                    <a href="detailkonser3.php"><img src="posterkonser/poster3.png" alt="gmbrposter3" class="ukuranposter"></a>
+                    <a href="detailkonser.php"><img src="posterkonser/poster3.png" alt="gmbrposter3" class="ukuranposter"></a>
                 </td>
                 <td>
-                    <a href="detailkonser4.php"><img src="posterkonser/poster1.png" alt="gmbrposter4" class="ukuranposter"></a>
+                    <a href="detailkonser.php"><img src="posterkonser/poster1.png" alt="gmbrposter4" class="ukuranposter"></a>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="judulposter">
-                        <a href="detailkonser1.php">CHARITY CONCERT : ONE</a>
+                        <a href="detailkonser.php">CHARITY CONCERT : ONE</a>
                     </div>
                 </td>
                 <td>
                     <div class="judulposter">
-                        <a href="detailkonser2.php">Freedom of Nggambleh</a>
+                        <a href="detailkonser.php">Freedom of Nggambleh</a>
                     </div>
                 </td>
                 <td>
                     <div class="judulposter">
-                        <a href="detailkonser3.php">Musik Indonesia Keren</a>
+                        <a href="detailkonser.php">Musik Indonesia Keren</a>
                     </div>
                 </td>
                 <td>
                     <div class="judulposter">
-                        <a href="detailkonser4.php">CHARITY CONCERT : ONE</a>
+                        <a href="detailkonser.php">CHARITY CONCERT : ONE</a>
                     </div>
                 </td>
             </tr>

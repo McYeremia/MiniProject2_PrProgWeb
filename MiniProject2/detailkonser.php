@@ -48,6 +48,11 @@ require "functions.php";
             </td>
         </tr>
     </table>
-    <button class="btn"> Pesan Sekarang</button>
+    <button onclick="navigateToPage()"class="btn">Pesan Sekarang</button>
+    <script>
+        function navigateToPage() {
+            window.location.href = "pemesanan.php";
+        }
+    </script>
 
 </html>
