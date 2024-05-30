@@ -8,7 +8,18 @@
     }
 
     require "functions.php";
-    
+    $username = $_SESSION["username"];
+
+    $result = mysqli_query($conn, "SELECT * FROM user_data WHERE username = '$username'");
+    $user = mysqli_fetch_assoc($result);
+    $password = $user['password'];
+    $email = $user['email'];
+    $user_id = $user['id_user'];
+
+    $hitungpanjangpassword = strlen($password);
+    $penutuppassword = str_repeat('•', $hitungpanjangpassword);
+
+
 ?> 
 
 <!DOCTYPE html>
@@ -29,7 +40,7 @@
     </header>
     <div class="hallouser">
         <h1>
-            Halo, $username !
+            Halo, <?php echo $username; ?>
         </h1>
     </div>
     <div class="detailakun">
@@ -45,7 +56,11 @@
                 </td>
                 <td>
                     <p class="tabelakun">
-                        $username
+                        <?php 
+                           echo $username;
+                        
+                        ?>
+                        
                     </p>
                 </td>
             </tr>
@@ -57,7 +72,11 @@
                 </td>
                 <td>
                     <p class="tabelakun">
-                        $password
+                        <?php 
+                           echo $penutuppassword;
+                        
+                        ?>
+                        
                     </p>
                 </td>
             <tr>
@@ -68,7 +87,11 @@
                 </td>
                 <td>
                     <p class="tabelakun">
-                        $email
+                    <?php 
+                           echo $email;
+                        
+                        ?>
+                        
                     </p>
                 </td>
             </tr>
@@ -98,32 +121,63 @@
                     </td>
                     <td>
                         <h4>
-                            Nama Artis
+                            Jumlah
                         </h4>
                     </td>
                 </tr>
             </thead>
             <div class="tabeltiketuserisi">
+                <?php $resultpemesanan = mysqli_query($conn, "SELECT * FROM tiket_data WHERE id_user = '$user_id'");?>
+                <?php if(isset($resultpemesanan)) :?>
+                    <?php while($infotiket = mysqli_fetch_assoc($resultpemesanan)) : 
+                        $jumlahtiket = $infotiket['jumlah'];
+                        $id_konser = $infotiket['id_konser'];                                                                    
+                        $resultkonser = mysqli_query($conn, "SELECT * FROM konser_data WHERE id_konser = '$id_konser'");
+
+                        if(mysqli_num_rows($resultkonser) === 1){
+                            $infokonser = mysqli_fetch_assoc($resultkonser);
+                            $judulkonser = $infokonser['nama_konser'];
+                            $lokasikonser = $infokonser['lokasi_konser'];
+                            $tanggalkonser = $infokonser['tanggal_konser'];
+                        }
+                    ?>
                 <tr>
                     <td>
-                        CHARITY CONCERT : ONE
+                        <?php
+                            if(isset($judulkonser)){
+                                echo $judulkonser;
+                            }
+                        ?>
                     </td>
                     <td>
-                        Bandung
+                        <?php
+                            if(isset($lokasikonser)){
+                                echo $lokasikonser;
+                            }
+                        ?>
                     </td>
                     <td>
-                        2024-02-24
+                        <?php
+                            if(isset($tanggalkonser)){
+                                echo $tanggalkonser;
+                            }
+                        ?>
                     </td>
                     <td>
-                        DJ Valentino
+                        <?php
+                            if(isset($jumlahtiket)){
+                                echo $jumlahtiket;
+                            }
+                        ?>
                     </td>
                 </tr>
+                    <?php endwhile;?>
+                <?php endif;?>
             </div>
         </table>
     </div>
     <div class="tombollogout">
         <form method="Post" action="logout.php">
-            <!-- <button type="submit" name="logout">Logout</button> -->
             <button class="btn" type="submit" name="logout"> Log out
             </button>
         </form>
