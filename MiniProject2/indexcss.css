@@ -129,7 +129,7 @@ div.judulposter{
     margin-top: 10pt;
     margin-bottom: 70pt;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 div.judulposter a{
@@ -177,4 +177,21 @@ footer .logososmed img{
     font-size: 15px;
     padding: 5px;
     font-weight: normal;
+}
+
+.konserterkini table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.konserterkini td {
+    padding: 10px;
+    text-align: center;
+}
+.konserterkini img.ukuranposter {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
+.judulposter {
+    margin-top: 10px;
 }
