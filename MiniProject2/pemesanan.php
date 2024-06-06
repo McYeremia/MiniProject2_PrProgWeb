@@ -25,7 +25,17 @@ require "functions.php";
         <a href="index.php" class="pilihan">Home</a>
         <a href="daftarkonser.php" class="pilihan">Semua Konser</a>
         <a href="tentang.php" class="pilihan">Tentang</a>
-        <a href="akun.php" class="pilihan">Akun</a>
+        <?php 
+            if (!isset($_SESSION["login"])) {
+                ?>
+                <a href="akun.php" class="pilihan">Login</a>
+                <?php
+            }else{
+                ?>
+                <a href="akun.php" class="pilihan">Akun</a>
+                <?php   
+            }
+        ?>
     </header>
     <div class="container">
         <div class="header">

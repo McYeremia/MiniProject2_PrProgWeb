@@ -1,13 +1,30 @@
 <?php
-session_start();
+    session_start();
 
-///cek login
-if (!isset($_SESSION["login"])){
-    header("Location: login.php");
-    exit;
-}
+    ///cek login
+    // if (!isset($_SESSION["login"])){
+    //     header("Location: login.php");
+    //     exit;
+    // }
 
-require "functions.php";
+    require "functions.php";
+    
+    if (!isset($_GET['id_konser'])) {
+        header("Location: index.php");
+        exit;
+    }
+
+    $idKonser = $_GET['id_konser'];
+
+    $result = mysqli_query($conn, "SELECT * FROM konser_data WHERE id_konser = $idKonser");
+
+    $detailKonser = mysqli_fetch_assoc($result);
+    $namaKonser = $detailKonser['nama_konser'];
+    $deskripsiKonser = $detailKonser['deskripsi_konser'];
+    $artisKonser = $detailKonser['artis_konser'];
+    $tanggalKonser = $detailKonser['tanggal_konser'];
+    $lokasiKonser = $detailKonser['lokasi_konser'];
+    $posterKonser = $detailKonser['poster'];
 
 ?>
 
@@ -18,6 +35,41 @@ require "functions.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harmoni Konser Indonesia</title>
     <link rel="stylesheet" href="detailkonser.css">
+    <style>
+        .gambar{
+            width: 240pt;
+            margin-left: 50px;
+            border-radius: 10pt;
+            padding: 5px;
+            margin-right: 60pt;
+        }
+
+        .headline{
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .detailposterkonser td{
+            padding :0px;
+            margin: 0px;
+        }
+
+        .detailposterkonser h1{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .detailposterkonser h2{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -25,29 +77,59 @@ require "functions.php";
         <a href="index.php" class="pilihan">Home</a>
         <a href="daftarkonser.php" class="pilihan">Semua Konser</a>
         <a href="tentang.php" class="pilihan">Tentang</a>
-        <a href="akun.php" class="pilihan">Akun</a>
+        <?php 
+            if (!isset($_SESSION["login"])) {
+                ?>
+                <a href="akun.php" class="pilihan">Login</a>
+                <?php
+            }else{
+                ?>
+                <a href="akun.php" class="pilihan">Akun</a>
+                <?php   
+            }
+        ?>
     </header>
-    <h1 class="judul"> Detail Konser</h1>
+    <h1 class="headline"> Detail Konser</h1>
     
-    <table border="0">
-        <tr>
-            <td>
-                <img class="gambar" src="posterkonser/poster1.jpg" alt="">
-            </td>
-            <td class="desc">
-                <h1>Charity Concert </h1>
-                <h2>Description: </h2>
-                <p>*konser ini adalah konser musik yang ada di indonesia</p>
-                <h2>Artis : </h2>
-                <p><b>*DJ Valentino</b></p>
-                <h2>Date: </h2>
-                <p>*19/02/2024</p>
-                <h2>Lokasi:</h2>
-                <p>*Bandung</p>
-                
-            </td>
-        </tr>
-    </table>
+    <div class='detailposterkonser'>
+        <table border="0">
+            <tr>
+                <td rowspan = "8">
+                    <img class="gambar" src="<?php echo $posterKonser; ?>" alt="posterkonser">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h1><?php echo $namaKonser?></h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Description: </h2>
+                    <p><?php echo $deskripsiKonser?></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Artis : </h2>
+                    <p><?php echo $artisKonser?> </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Date: </h2>
+                    <p><?php echo $tanggalKonser?></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2>Lokasi:</h2>
+                    <p><?php echo $lokasiKonser?></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
     <button onclick="navigateToPage()"class="btn">Pesan Sekarang</button>
     <script>
         function navigateToPage() {

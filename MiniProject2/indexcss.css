@@ -180,7 +180,7 @@ footer .logososmed img{
 }
 
 .konserterkini table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
 }
 .konserterkini td {
@@ -192,6 +192,8 @@ footer .logososmed img{
     height: 400px;
     object-fit: cover;
 }
-.judulposter {
-    margin-top: 10px;
+
+.konserterkini table .judulposter {
+    margin-top: 5px;
+    margin-bottom: 20px;
 }

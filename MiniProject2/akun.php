@@ -29,6 +29,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Akun Harmoni Konser</title>
     <link rel="stylesheet" href="akuncss.css">
+    <style>
+        .btn{
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
