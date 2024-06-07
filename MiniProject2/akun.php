@@ -29,11 +29,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Akun Harmoni Konser</title>
     <link rel="stylesheet" href="akuncss.css">
-    <style>
+    <!-- <style>
         .btn{
             margin-bottom: 10px;
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <header>
@@ -131,7 +131,8 @@
                     </td>
                 </tr>
             </thead>
-            <div class="tabeltiketuserisi">
+            <!-- !!!Jangan Di Hapus!!! -->
+            <!-- <div class="tabeltiketuserisi">
                 <?php $resultpemesanan = mysqli_query($conn, "SELECT * FROM tiket_data WHERE id_user = '$user_id'");?>
                 <?php if(isset($resultpemesanan)) :?>
                     <?php while($infotiket = mysqli_fetch_assoc($resultpemesanan)) : 
@@ -178,13 +179,13 @@
                 </tr>
                     <?php endwhile;?>
                 <?php endif;?>
-            </div>
+            </div> -->
+            <!-- !!!Jangan Di Hapus!!! -->
         </table>
     </div>
     <div class="tombollogout">
-        <form method="Post" action="logout.php">
-            <button class="btn" type="submit" name="logout"> Log out
-            </button>
+        <form method="post" action="logout.php">
+            <button class="btn" type="submit" name="logout">Log out</button>
         </form>
     </div>
 </body>

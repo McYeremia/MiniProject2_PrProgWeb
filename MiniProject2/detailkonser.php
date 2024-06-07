@@ -121,17 +121,6 @@
             <tr>
                 <td>
                     <h2>Artis : </h2>
-                    <!-- <p>
-                        <?php 
-                            if($ambilartis > 1){
-                                foreach($ambilartis as $rows){
-                                    echo $ambilartis[$rows];
-                                } 
-                            } else {
-                                echo $ambilartis;
-                            }
-                        ?> 
-                    </p> -->
                     <p><?php echo implode(', ', $artisKonser); ?></p>
                 </td>
             </tr>
