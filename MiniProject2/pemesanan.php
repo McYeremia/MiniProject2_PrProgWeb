@@ -43,6 +43,18 @@ require "functions.php";
             <form>
                 <table border="0">
                     <tr>
+                        <label for="nama">Masukan nama anda</label><br>
+                        <input type="text" name="nama" id="nama" placeholder="Masukan nama"><br><br>
+                    </tr>
+                    <tr>
+                        <label for="nomortelepon">Masukan nomor telepon</label><br>
+                        <input type="tel" name="nomortelepon" id="nomortelepon" placeholder="Masukan nomor telepon"><br><br>
+                    </tr>
+                    <tr>
+                        <label for="email">Masukan email anda</label><br>
+                        <input type="email" name="email" id="email" placeholder="Masukan email anda"><br><br>
+                    </tr>
+                    <tr>
                         <label for="konser">Masukan nama konser</label><br>     
                         <input type="text" name="konser" id="konser" placeholder="Masukan nama konser"> <br><br>  
                     </tr>
@@ -51,12 +63,13 @@ require "functions.php";
                         <input type="date" name="tanggal" id="tanggal"><br><br>
                     </tr>
                     <tr>
-                        <label for="jumlah">Masukan jumlah tiket</label>
+                        <label for="jumlah">Masukan jumlah tiket</label><br>
                         <input type="number" name="jumlah" id="jumlah" placeholder="Masukan jumlah tiket" min="1" ><br><br>
                     </tr>
+                    
                 </table>
                 <button type="submit">Pesan Tiket</button><br><br>
-                <img src="gambar/LogoHKputihmerah.png" alt="logo">
+                <img src="gambar/LogoHKputihHitam.png" alt="logo">
 
         </div>
         <div class="content">
