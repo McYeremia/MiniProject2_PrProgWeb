@@ -9,7 +9,7 @@
 
     require "functions.php";
 
-    $result = mysqli_query($conn, "SELECT id_konser, poster, nama_konser FROM konser_data");
+    $result = mysqli_query($conn, "SELECT id_konser, poster, judul FROM konser_data");
     
 ?>
 
@@ -38,6 +38,7 @@
         .konserterkini table .judulposter {
             margin-top: 5px;
             margin-bottom: 20px;
+            font-size: 17px;
         }
     
     </style>
@@ -115,7 +116,7 @@
                 echo "</tr><tr>";
                 for ($j = $i; $j < $i + 4; $j++) {
                     if (isset($concerts[$j])) {
-                        echo "<td><div class='judulposter'><a href='detailkonser.php?id_konser=" . $concerts[$j]['id_konser'] . "'>" . $concerts[$j]['nama_konser'] . "</a></div></td>";
+                        echo "<td><div class='judulposter'><a href='detailkonser.php?id_konser=" . $concerts[$j]['id_konser'] . "'>" . $concerts[$j]['judul'] . "</a></div></td>";
                     } else {
                         echo "<td></td>";
                     }

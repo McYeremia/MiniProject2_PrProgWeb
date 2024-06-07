@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root","", "mp_ticketing") or die("Koneksi gagal");
+$conn = mysqli_connect("localhost", "root","", "tugasakhirprprogweb") or die("Koneksi gagal");
 
 function query($query){
     global $conn;

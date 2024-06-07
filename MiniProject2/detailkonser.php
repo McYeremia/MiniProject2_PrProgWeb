@@ -17,13 +17,23 @@
     $idKonser = $_GET['id_konser'];
 
     $result = mysqli_query($conn, "SELECT * FROM konser_data WHERE id_konser = $idKonser");
+    $namaartis = mysqli_query($conn, "SELECT * FROM artis WHERE id_konser = $idKonser");
+
+    $artisKonser = [];
+    while ($row = mysqli_fetch_assoc($namaartis)) {
+        $artisKonser[] = $row['nama_artis'];
+    }
+
 
     $detailKonser = mysqli_fetch_assoc($result);
-    $namaKonser = $detailKonser['nama_konser'];
-    $deskripsiKonser = $detailKonser['deskripsi_konser'];
-    $artisKonser = $detailKonser['artis_konser'];
-    $tanggalKonser = $detailKonser['tanggal_konser'];
-    $lokasiKonser = $detailKonser['lokasi_konser'];
+    // $ambilartis = mysqli_fetch_assoc($namaartis);
+    $namaKonser = $detailKonser['judul'];
+    $deskripsiKonser = $detailKonser['description'];
+    // $artisKonser = $ambilartis['nama_artis'];
+    $tanggalKonserAwal = $detailKonser['tanggal_awal'];
+    $tanggalKonserAkhir = $detailKonser['tanggal_akhir'];
+    $lokasiKonser = $detailKonser['kota'];
+    $venueKonser = $detailKonser['venue'];
     $posterKonser = $detailKonser['poster'];
 
 ?>
@@ -69,6 +79,11 @@
             margin-bottom: 20px;
             
         }
+
+        .deskripsikonser{
+            font-size: 12px;
+            text-justify: auto;
+        }
     </style>
 </head>
 <body>
@@ -105,26 +120,45 @@
             </tr>
             <tr>
                 <td>
-                    <h2>Description: </h2>
-                    <p><?php echo $deskripsiKonser?></p>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <h2>Artis : </h2>
-                    <p><?php echo $artisKonser?> </p>
+                    <!-- <p>
+                        <?php 
+                            if($ambilartis > 1){
+                                foreach($ambilartis as $rows){
+                                    echo $ambilartis[$rows];
+                                } 
+                            } else {
+                                echo $ambilartis;
+                            }
+                        ?> 
+                    </p> -->
+                    <p><?php echo implode(', ', $artisKonser); ?></p>
                 </td>
             </tr>
             <tr>
                 <td>
                     <h2>Date: </h2>
-                    <p><?php echo $tanggalKonser?></p>
+                    <p>
+                        <?php 
+                            if($tanggalKonserAwal == $tanggalKonserAkhir){
+                                echo $tanggalKonserAwal;
+                            } else {
+                                echo $tanggalKonserAwal?> sampai <?php echo $tanggalKonserAkhir;
+                            }
+                        ?>
+                    </p>
                 </td>
             </tr>
             <tr>
                 <td>
                     <h2>Lokasi:</h2>
                     <p><?php echo $lokasiKonser?></p>
+                </td>
+            </tr>
+            <tr>
+                <td class='deskripsikonser'>
+                    <h2>Description: </h2>
+                    <p><?php echo $deskripsiKonser?></p>
                 </td>
             </tr>
         </table>
