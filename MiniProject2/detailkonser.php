@@ -171,8 +171,10 @@
                             //             window.location.href = 'konfirmasitiket.php?id_konser=$idKonser';
                             //         }
                             // </script>";
+
+//                             echo "<button onclick='navigateToPage({$id_tiket})'>Pesan Sekarang</button>";
                         } else {
-                            echo "<button onclick='navigateToPage()' disabled>Stok Habis</button>";
+                            echo "<button onclick='navigateToPage({$id_tiket})' disabled>Stok Habis</button>";
                             }
                         $count++;
                     }
@@ -187,4 +189,10 @@
             ?>
         </table>
     </div>
+    <script>
+        function navigateToPage(id_tiket) {
+            var url = 'pemesanan.php?id_tiket=' + encodeURIComponent(id_tiket);
+            window.location.href = url;
+        }
+    </script>
 </html>
