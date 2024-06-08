@@ -202,7 +202,10 @@ body {
 }
 
 .gambarSeating{
+    margin-left: 50px;
     float: left;
     width: auto;
     height: auto;
+    max-width: 15%;
+    max-height: auto;
 }
