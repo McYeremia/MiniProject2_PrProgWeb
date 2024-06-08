@@ -17,7 +17,7 @@
     $idKonser = $_GET['id_konser'];
 
     $result = mysqli_query($conn, "SELECT * FROM konser_data WHERE id_konser = $idKonser");
-    $namaartis = mysqli_query($conn, "SELECT * FROM artis WHERE id_konser = $idKonser");
+    $namaartis = mysqli_query($conn, "SELECT * FROM konser_data NATURAL JOIN featuring NATURAL JOIN artis WHERE id_konser = $idKonser");
 
     $artisKonser = [];
     while ($row = mysqli_fetch_assoc($namaartis)) {

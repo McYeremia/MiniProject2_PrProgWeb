@@ -3,7 +3,8 @@
 
     require "functions.php";
 
-    $result = mysqli_query($conn, "SELECT id_konser, poster, judul FROM konser_data");
+    $today = date("Y-m-d");
+    $result = mysqli_query($conn, "SELECT id_konser, poster, judul FROM konser_data where tanggal_akhir > $today ORDER BY tanggal_awal DESC;");
 ?>
 
 <!DOCTYPE html>
