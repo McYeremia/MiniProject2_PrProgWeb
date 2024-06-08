@@ -3,8 +3,7 @@
 
     require "functions.php";
 
-    $today = date("Y-m-d");
-    $result = mysqli_query($conn, "SELECT id_konser, poster, judul FROM konser_data where tanggal_akhir > $today ORDER BY tanggal_awal DESC;");
+    $result = mysqli_query($conn, "SELECT konser_data.id_konser, poster, tanggal_awal, tanggal_akhir, judul, MIN(tiket_data.harga) AS harga_terendah FROM konser_data LEFT JOIN tiket_data ON konser_data.id_konser = tiket_data.id_konser WHERE tanggal_akhir >= CURDATE() GROUP BY konser_data.id_konser");
 ?>
 
 <!DOCTYPE html>
@@ -75,86 +74,21 @@
                 echo "</tr><tr>";
                 for ($j = $i; $j < $i + 4; $j++) {
                     if (isset($concerts[$j])) {
-                        echo "<td><div class='judulposter'><a href='detailkonser.php?id_konser=" . $concerts[$j]['id_konser'] . "'>" . $concerts[$j]['judul'] . "</a></div></td>";
+                        $tanggal = $concerts[$j]['tanggal_awal'] == $concerts[$j]['tanggal_akhir'] ? $concerts[$j]['tanggal_awal'] : $concerts[$j]['tanggal_awal'] . ' - ' . $concerts[$j]['tanggal_akhir'];
+                        $hargaTerendah = $concerts[$j]['harga_terendah'] ? number_format($concerts[$j]['harga_terendah'], 0, ',', '.') : 'Tidak Tersedia';
+                        echo "<td>";
+                        echo "<div class='judulposter'><a href='detailkonser.php?id_konser=" . $concerts[$j]['id_konser'] . "'>" . $concerts[$j]['judul'] . "</a></div>";
+                        echo "<div class='tanggalkonser'><a href='detailkonser.php?id_konser=" . $concerts[$j]['id_konser'] . "'>" . $tanggal . "</a></div>";
+                        echo "<div class='hargaterendah'>Mulai Dari: Rp " . $hargaTerendah . "</div>";
+                        echo "</td>";
                     } else {
                         echo "<td></td>";
                     }
                 }
                 echo "</tr>";
             }
+            
             ?>
-            <!-- <tr>
-                <td>
-                    <a href="detailkonser.php"><img src="posterkonser/poster1.png" alt="gmbrposter1" class="ukuranposter"></a>
-                </td>
-                <td>
-                    <a href="detailkonser.php"><img src="posterkonser/poster2.png" alt="gmbrposter2" class="ukuranposter"></a>
-                </td>
-                <td>
-                    <a href="detailkonser.php"><img src="posterkonser/poster3.png" alt="gmbrposter3" class="ukuranposter"></a>
-                </td>
-                <td>
-                    <a href="detailkonser.php"><img src="posterkonser/poster1.png" alt="gmbrposter4" class="ukuranposter"></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="judulposter">
-                        <a href="detailkonser.php">CHARITY CONCERT : ONE</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="judulposter">
-                        <a href="detailkonser.php">Freedom of Nggambleh</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="judulposter">
-                        <a href="detailkonser.php">Musik Indonesia Keren</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="judulposter">
-                        <a href="detailkonser.php">CHARITY CONCERT : ONE</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="detailkonser.php"><img src="posterkonser/poster1.png" alt="gmbrposter1" class="ukuranposter"></a>
-                </td>
-                <td>
-                    <a href="detailkonser.php"><img src="posterkonser/poster2.png" alt="gmbrposter2" class="ukuranposter"></a>
-                </td>
-                <td>
-                    <a href="detailkonser.php"><img src="posterkonser/poster3.png" alt="gmbrposter3" class="ukuranposter"></a>
-                </td>
-                <td>
-                    <a href="detailkonser.php"><img src="posterkonser/poster1.png" alt="gmbrposter4" class="ukuranposter"></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="judulposter">
-                        <a href="detailkonser.php">CHARITY CONCERT : ONE</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="judulposter">
-                        <a href="detailkonser.php">Freedom of Nggambleh</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="judulposter">
-                        <a href="detailkonser.php">Musik Indonesia Keren</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="judulposter">
-                        <a href="detailkonser.php">CHARITY CONCERT : ONE</a>
-                    </div>
-                </td>
-            </tr> -->
         
         </table>
     </div>
