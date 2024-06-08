@@ -102,6 +102,11 @@
             </tr>
         </table>
     </div>
+    <div class="tombollogout">
+        <form method="post" action="logout.php">
+            <button class="btn" type="submit" name="logout">Log out</button>
+        </form>
+    </div>
     <div class="daftartiketuser">
         <h2>
             Tiket Anda :
@@ -182,11 +187,6 @@
             </div> -->
             <!-- !!!Jangan Di Hapus!!! -->
         </table>
-    </div>
-    <div class="tombollogout">
-        <form method="post" action="logout.php">
-            <button class="btn" type="submit" name="logout">Log out</button>
-        </form>
     </div>
 </body>
 </html>

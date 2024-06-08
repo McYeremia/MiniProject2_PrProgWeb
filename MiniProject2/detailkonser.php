@@ -17,7 +17,7 @@
     $idKonser = $_GET['id_konser'];
 
     $result = mysqli_query($conn, "SELECT * FROM konser_data WHERE id_konser = $idKonser");
-    $namaartis = mysqli_query($conn, "SELECT * FROM artis WHERE id_konser = $idKonser");
+    $namaartis = mysqli_query($conn, "SELECT * FROM konser_data NATURAL JOIN featuring NATURAL JOIN artis WHERE id_konser = $idKonser");
 
     $artisKonser = [];
     while ($row = mysqli_fetch_assoc($namaartis)) {
@@ -35,6 +35,7 @@
     $lokasiKonser = $detailKonser['kota'];
     $venueKonser = $detailKonser['venue'];
     $posterKonser = $detailKonser['poster'];
+    $seatingKonser = $detailKonser['seating'];
 
 ?>
 
@@ -46,44 +47,7 @@
     <title>Harmoni Konser Indonesia</title>
     <link rel="stylesheet" href="detailkonser.css">
     <style>
-        .gambar{
-            width: 240pt;
-            margin-left: 50px;
-            border-radius: 10pt;
-            padding: 5px;
-            margin-right: 60pt;
-        }
-
-        .headline{
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .detailposterkonser td{
-            padding :0px;
-            margin: 0px;
-        }
-
-        .detailposterkonser h1{
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .detailposterkonser h2{
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        .btn{
-            margin-top: 20px;
-            margin-bottom: 20px;
-            
-        }
-
-        .deskripsikonser{
-            font-size: 12px;
-            text-justify: auto;
-        }
+        
     </style>
 </head>
 <body>
@@ -152,12 +116,77 @@
             </tr>
         </table>
     </div>
-    
-    <button onclick="navigateToPage()"class="btn">Pesan Sekarang</button>
-    <script>
-        function navigateToPage() {
-            window.location.href = "pemesanan.php";
+    <div>
+    <?php
+        if ($seatingKonser != null){
+            ?>
+            <img class='gambarSeating' src='<?php echo $seatingKonser; ?>' alt='seating'>
+            <?php
         }
-    </script>
-
+        
+        ?>
+        <table border="0" class="tabelpilihantiket">
+            <thead>
+                <tr>
+                    <td>
+                        <h4>
+                            Jenis Tiket
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            Harga
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            Stok
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            Klik Disini Untuk Pesan
+                        </h4>
+                    </td>
+                </tr>
+            </thead>
+            <?php
+                $sqltiket = "SELECT * FROM tiket_data WHERE id_konser = {$idKonser}"; // Ensure the ID is an integer to prevent SQL injection
+                $result = mysqli_query($conn, $sqltiket);
+                if ($result && mysqli_num_rows($result) > 0) {
+                    $count = 0; // Counter to track the number of boxes in a row
+                    while ($tiket = mysqli_fetch_assoc($result)) {
+                        echo '<tr>';
+                        $id_tiket = $tiket['id_tiket'];
+                        $jenis_tiket = $tiket['jenis_tiket'];
+                        $harga_tiket = number_format($tiket['harga'], 2, ',', '.');
+                        $stok_tiket = $tiket['stok'];
+                        
+                        echo "<td>{$jenis_tiket}</td>
+                                <td>Rp. {$harga_tiket}</td>
+                                <td>Stok: {$stok_tiket}</td>
+                                <td>";
+                        if ($stok_tiket != 0) {
+                            echo "<button onclick='navigateToPage()'>Pesan Sekarang</button>
+                            <script>
+                                    function navigateToPage() {
+                                        window.location.href = 'pemesanan.php';
+                                    }
+                            </script>";
+                        } else {
+                            echo "<button onclick='navigateToPage()' disabled>Stok Habis</button>";
+                            }
+                        $count++;
+                    }
+                    echo '</td>
+                    </tr>'; // Close the last row
+                } else {
+                    echo "Tidak ada tiket tersedia.";
+                    if (!$result) {
+                        echo "Error: " . mysqli_error($conn); // Output any SQL error for debugging
+                    }
+                }
+            ?>
+        </table>
+    </div>
 </html>
