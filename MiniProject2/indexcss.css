@@ -195,5 +195,10 @@ footer .logososmed img{
 
 .konserterkini table .judulposter {
     margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.tanggalkonser{
     margin-bottom: 20px;
+    color: #000529;
 }

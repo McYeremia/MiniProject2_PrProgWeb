@@ -9,7 +9,7 @@
 
     require "functions.php";
 
-    $result = mysqli_query($conn, "SELECT id_konser, poster, judul FROM konser_data");
+    $result = mysqli_query($conn, "SELECT konser_data.id_konser, poster, tanggal_awal, tanggal_akhir, judul, MIN(tiket_data.harga) AS harga_terendah FROM konser_data LEFT JOIN tiket_data ON konser_data.id_konser = tiket_data.id_konser WHERE tanggal_akhir >= CURDATE() GROUP BY konser_data.id_konser");
     
 ?>
 
@@ -37,7 +37,6 @@
 
         .konserterkini table .judulposter {
             margin-top: 5px;
-            margin-bottom: 20px;
             font-size: 17px;
         }
     
@@ -116,13 +115,20 @@
                 echo "</tr><tr>";
                 for ($j = $i; $j < $i + 4; $j++) {
                     if (isset($concerts[$j])) {
-                        echo "<td><div class='judulposter'><a href='detailkonser.php?id_konser=" . $concerts[$j]['id_konser'] . "'>" . $concerts[$j]['judul'] . "</a></div></td>";
+                        $tanggal = $concerts[$j]['tanggal_awal'] == $concerts[$j]['tanggal_akhir'] ? $concerts[$j]['tanggal_awal'] : $concerts[$j]['tanggal_awal'] . ' - ' . $concerts[$j]['tanggal_akhir'];
+                        $hargaTerendah = $concerts[$j]['harga_terendah'] ? number_format($concerts[$j]['harga_terendah'], 0, ',', '.') : 'Tidak Tersedia';
+                        echo "<td>";
+                        echo "<div class='judulposter'><a href='detailkonser.php?id_konser=" . $concerts[$j]['id_konser'] . "'>" . $concerts[$j]['judul'] . "</a></div>";
+                        echo "<div class='tanggalkonser'><a href='detailkonser.php?id_konser=" . $concerts[$j]['id_konser'] . "'>" . $tanggal . "</a></div>";
+                        echo "<div class='hargaterendah'>Mulai Dari: Rp " . $hargaTerendah . "</div>";
+                        echo "</td>";
                     } else {
                         echo "<td></td>";
                     }
                 }
                 echo "</tr>";
             }
+            
             ?>
         </table>
     </div>
