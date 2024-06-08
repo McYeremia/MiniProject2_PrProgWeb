@@ -8,11 +8,6 @@
     // }
 
     require "functions.php";
-    
-    if (!isset($_GET['id_konser'])) {
-        header("Location: index.php");
-        exit;
-    }
 
     $idKonser = $_GET['id_konser'];
 
@@ -26,10 +21,8 @@
 
 
     $detailKonser = mysqli_fetch_assoc($result);
-    // $ambilartis = mysqli_fetch_assoc($namaartis);
     $namaKonser = $detailKonser['judul'];
     $deskripsiKonser = $detailKonser['description'];
-    // $artisKonser = $ambilartis['nama_artis'];
     $tanggalKonserAwal = $detailKonser['tanggal_awal'];
     $tanggalKonserAkhir = $detailKonser['tanggal_akhir'];
     $lokasiKonser = $detailKonser['kota'];
@@ -167,7 +160,19 @@
                                 <td>Stok: {$stok_tiket}</td>
                                 <td>";
                         if ($stok_tiket != 0) {
-                            echo "<button onclick='navigateToPage({$id_tiket})'>Pesan Sekarang</button>";
+                            echo "<form action='konfirmasitiket.php' method='GET'>
+                                    <input type='hidden' name='id_konser' value='{$idKonser}'>
+                                    <input type='hidden' name='id_tiket' value='{$id_tiket}'>
+                                    <button type='submit'>Pesan Sekarang</button>
+                                  </form>";
+                            // echo "<button onclick='navigateToPage()'>Pesan Sekarang</button>
+                            // <script>
+                            //         function navigateToPage() {
+                            //             window.location.href = 'konfirmasitiket.php?id_konser=$idKonser';
+                            //         }
+                            // </script>";
+
+//                             echo "<button onclick='navigateToPage({$id_tiket})'>Pesan Sekarang</button>";
                         } else {
                             echo "<button onclick='navigateToPage({$id_tiket})' disabled>Stok Habis</button>";
                             }
