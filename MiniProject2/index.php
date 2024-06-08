@@ -73,17 +73,17 @@
     </div>
 
     <div class="pencarian">
-        <form id="formpencarian"><center>
+        <form id="formpencarian" action="search.php" method="POST"><center>
             <table id="tabelpencarian">
                 <tr>
                     <td>
-                        <input type="text" class="input" id="carinamakonser" placeholder="masukkan nama konser">
+                        <input type="text" class="input" id="carinamakonser" name="carinamakonser"  placeholder="masukkan nama konser">
                     </td>
                     <td>
-                        <input type="date" class="input" id="tanggalkonser">
+                        <input type="date" class="input" id="tanggalkonser" name="tanggalkonser">
                     </td>
                     <td>
-                        <input type="text" class="input" id="lokasikonser" placeholder="masukkan lokasi konser">
+                        <input type="text" class="input" id="lokasikonser" name="lokasikonser" placeholder="masukkan lokasi konser">
                     </td>
                     <td>
                         <input type="submit" class="input" id="submitcari">
