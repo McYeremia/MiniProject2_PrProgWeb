@@ -18,6 +18,7 @@
     $stokJenisTiket = mysqli_fetch_assoc($ambilStok);
     $stok = $stokJenisTiket['stok'];
     $tiketDipilih = $stokJenisTiket['jenis_tiket'];
+    $hargaTiket = $stokJenisTiket['harga'];
 
 
     $detailKonser = mysqli_fetch_assoc($result);
@@ -59,7 +60,7 @@
     </header>
     
     <div class="tabelkonser">
-        <table border=  "0">
+        <table border= "0">
             <tr>
                 <td>
                     <img src="<?php echo $posterKonser?>" alt="posterkonser">
@@ -117,14 +118,30 @@
             <tr>
                 <td>
                     <div class='ticket-quantity'>
-                        <button class='quantity-button' type='button' onclick='decreaseQuantity({$id_tiket})'>-</button>
-                        <input type='text' name='quantity[{$id_tiket}]' id='quantity-{$id_tiket}' value='0' readonly>
-                        <button class='quantity-button' type='button' onclick='increaseQuantity({$id_tiket}, {$stok_tiket})'>+</button>
+                        <button class='quantity-button' type='button' onclick='decreaseQuantity(<?php echo $idTiket; ?>)'>-</button>
+                        <input type='text' name='quantity[<?php echo $idTiket; ?>]' id='quantity-<?php echo $idTiket; ?>' value='0' readonly>
+                        <button class='quantity-button' type='button' onclick='increaseQuantity(<?php echo $idTiket; ?>, <?php echo $stok; ?>)'>+</button>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
+
+    <div class="hargatiket">
+        <table border="0">
+            <tr>
+                <td>
+                    <h3>Harga :</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="total-price">Rp 0</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
     <div class="tombol">
         <table border="0">
             <tr>
@@ -147,3 +164,34 @@
     </div>
 </body>
 </html>
+
+<script>
+    function increaseQuantity(idTiket, stokTiket) {
+        let quantityInput = document.getElementById('quantity-' + idTiket);
+        let quantity = parseInt(quantityInput.value);
+
+        if (quantity < stokTiket) {
+            quantity++;
+            quantityInput.value = quantity;
+            updateTotalPrice(idTiket, quantity);
+        }
+    }
+
+    function decreaseQuantity(idTiket) {
+        let quantityInput = document.getElementById('quantity-' + idTiket);
+        let quantity = parseInt(quantityInput.value);
+
+        if (quantity > 0) {
+            quantity--;
+            quantityInput.value = quantity;
+            updateTotalPrice(idTiket, quantity);
+        }
+    }
+
+    function updateTotalPrice(idTiket, quantity) {
+        let hargaTiket = <?php echo $hargaTiket; ?>;
+        let totalPriceElement = document.getElementById('total-price');
+        let totalPrice = hargaTiket * quantity;
+        totalPriceElement.innerText = 'Rp ' + totalPrice.toLocaleString('id-ID');
+    }
+</script>
