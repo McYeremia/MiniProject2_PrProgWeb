@@ -188,6 +188,33 @@
                 }
             ?>
         </table>
+        <footer>
+        <div class="socialmedia">
+            <p>Follow Us!</p>
+            <div class="logososmed">
+                <table border="0">
+                    <tr>
+                        <td>
+                            <a href="https://www.facebook.com"><img src="logososmed/facebook.png" alt="fb"></a>
+                        </td>
+                        <td>
+                            <a href="https://www.instagram.com/"><img src="logososmed/instagram (2).png" alt="ig"></a>
+                        </td>
+                        <td>
+                            <a href="https://www.tiktok.com/id-ID/"><img src="logososmed/tiktok.png" alt="tiktok"></a>
+                        </td>
+                        <td>
+                            <a href="https://x.com/?lang=en"><img src="logososmed/twitter.png" alt="x"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <p id="reg">&reg;Harmoni Musik Indonesia 2024</p>
+        </div>
+    </footer>
     </div>
     <script>
         function navigateToPage(id_tiket) {

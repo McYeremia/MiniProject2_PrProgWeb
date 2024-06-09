@@ -288,6 +288,7 @@ input[type="text"] {
     padding: 40pt;
     padding-top: 70pt;
     margin-bottom: 20pt;
+    
 }
 
 .container h1{
@@ -300,6 +301,7 @@ input[type="text"] {
     padding: 10px;
     margin-bottom: 20px;
     background-color: #5893a5;
+    margin-left: 12%;
     
 }
 .container img{
@@ -310,7 +312,7 @@ input[type="text"] {
     margin-top: 20pt;
 }
 .container label{
-    margin-left: 4%;
+    margin-left: 32%;
     font-weight: bold;
     font-size: large;
 }
@@ -321,7 +323,7 @@ input[type="text"], input[type="date"], input[type="number"], input[type="tel"],
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-left: 5%;
+    margin-left: 20%;
     text-align: left;
 }
 
@@ -334,8 +336,40 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 25%;
 }
 
 button:hover {
     background-color: #218838;
+}
+footer{
+    background-color: #5893a5;
+    
+    padding-bottom: 20px;
+}
+
+
+
+footer {
+    background-color: #5893a5;
+    padding: 10px 20px; /* Adjust padding for spacing */
+    text-align: center;
+}
+
+footer p {
+    margin: 10px 0; /* Adjust margin for spacing */
+    font-size: 25px;
+}
+
+footer table {
+    margin: 0 auto;
+    text-align: center;
+}
+
+footer .logososmed img {
+    width: 30px;
+    margin: 0 10px;
+    background-color: #f9fff3;
+    border-radius: 20px;
+    padding: 10px;
 }

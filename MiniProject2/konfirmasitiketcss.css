@@ -268,3 +268,69 @@ input[type="text"] {
     margin-top: 10px;
     margin-right: 20px ; 
 }
+footer{
+    background-color: #5893a5;
+    
+    padding-bottom: 20px;
+}
+
+
+
+footer p{
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom: 10px;
+    margin: 0px;
+    font-size: 25px;
+}
+
+footer table{
+    text-align: center;
+    margin: 0 auto;
+}
+
+footer .logososmed img{
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    background-color: #f9fff3;
+    border-radius: 20px;
+    padding: 10px;
+}
+footer{
+    background-color: #5893a5;
+    
+    padding-bottom: 20px;
+}
+
+
+
+footer p{
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom: 10px;
+    margin: 0px;
+    font-size: 25px;
+}
+
+footer table{
+    text-align: center;
+    margin: 0 auto;
+}
+
+footer .logososmed img{
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    background-color: #f9fff3;
+    border-radius: 20px;
+    padding: 10px;
+}
+.tombolpesan{
+    margin-bottom: 10px;
+}
+.tombolcancel{
+    margin-bottom: 10px;
+}

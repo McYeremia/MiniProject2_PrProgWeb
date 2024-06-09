@@ -151,7 +151,7 @@
             <tr>
                 <td>
                     <div class="tombolpesan">
-                        <form id="orderForm-<?php echo $idTiket; ?>" method="post" onsubmit="updateFormAction(<?php echo $idTiket; ?>,<?php echo $idKonser; ?>)">
+                        <form id="orderForm-<?php echo $idTiket; ?>" method="post" onsubmit="return updateFormAction(<?php echo $idTiket; ?>,<?php echo $idKonser; ?>)">
                             <button class="btn2" type="submit" name="logout">Pesan</button>
                         </form>
                     </div>
@@ -166,6 +166,33 @@
             </tr>
         </table>
     </div>
+    <footer>
+        <div class="socialmedia">
+            <p>Follow Us!</p>
+            <div class="logososmed">
+                <table border="0">
+                    <tr>
+                        <td>
+                            <a href="https://www.facebook.com"><img src="logososmed/facebook.png" alt="fb"></a>
+                        </td>
+                        <td>
+                            <a href="https://www.instagram.com/"><img src="logososmed/instagram (2).png" alt="ig"></a>
+                        </td>
+                        <td>
+                            <a href="https://www.tiktok.com/id-ID/"><img src="logososmed/tiktok.png" alt="tiktok"></a>
+                        </td>
+                        <td>
+                            <a href="https://x.com/?lang=en"><img src="logososmed/twitter.png" alt="x"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <p id="reg">&reg;Harmoni Musik Indonesia 2024</p>
+        </div>
+    </footer>
 </body>
 </html>
 
@@ -200,9 +227,13 @@
     }
 
     function updateFormAction(idTiket, idKonser) {
-            var quantity = document.getElementById('quantity-' + idTiket).value;
-            var form = document.getElementById('orderForm-' + idTiket);
-            form.action = 'pemesanan.php?id_tiket=' + idTiket + '&jumlah=' + quantity + '&id_konser=' + idKonser;
+        var quantity = document.getElementById('quantity-' + idTiket).value;
+        if (quantity == 0) {
+            alert('Jumlah tiket yang dipesan tidak boleh 0.');
+            return false;
         }
-    
+        var form = document.getElementById('orderForm-' + idTiket);
+        form.action = 'pemesanan.php?id_tiket=' + idTiket + '&jumlah=' + quantity + '&id_konser=' + idKonser;
+        return true;
+    }
 </script>

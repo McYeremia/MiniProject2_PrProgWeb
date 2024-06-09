@@ -143,7 +143,10 @@ body {
     padding: 5px;
     width: 800px;
     border-collapse: collapse;
-    float: left;
+    /* float: right; */
+    margin-bottom: 50px;
+    margin-top: 20px;
+
 }
 
 .tabelpilihantiket th,
@@ -208,6 +211,7 @@ body {
     height: auto;
     max-width: 15%;
     max-height: auto;
+    margin-right: 50px;
 }
 button[type='submit']{
   display: inline-flex;
@@ -236,4 +240,29 @@ button:disabled {
     opacity: 0.6;
     border-radius: 9999px;
 }
+
+footer {
+    background-color: #5893a5;
+    padding: 10px 20px; /* Adjust padding for spacing */
+    text-align: center;
+}
+
+footer p {
+    margin: 10px 0; /* Adjust margin for spacing */
+    font-size: 25px;
+}
+
+footer table {
+    margin: 0 auto;
+    text-align: center;
+}
+
+footer .logososmed img {
+    width: 30px;
+    margin: 0 10px;
+    background-color: #f9fff3;
+    border-radius: 20px;
+    padding: 10px;
+}
+
 
