@@ -352,12 +352,12 @@ footer{
 
 footer {
     background-color: #5893a5;
-    padding: 10px 20px; /* Adjust padding for spacing */
+    padding: 10px 20px;
     text-align: center;
 }
 
 footer p {
-    margin: 10px 0; /* Adjust margin for spacing */
+    margin: 10px 0;
     font-size: 25px;
 }
 

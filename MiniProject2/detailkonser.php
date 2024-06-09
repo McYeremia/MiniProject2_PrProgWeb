@@ -53,10 +53,12 @@
             if (!isset($_SESSION["login"])) {
                 ?>
                 <a href="akun.php" class="pilihan">Login</a>
+                <a href="signup.php" class="pilihan">Sign Up</a>
                 <?php
             }else{
                 ?>
                 <a href="akun.php" class="pilihan">Akun</a>
+                <a href="logout.php" class="pilihan">Logout</a>
                 <?php   
             }
         ?>
@@ -144,10 +146,10 @@
                 </tr>
             </thead>
             <?php
-                $sqltiket = "SELECT * FROM tiket_data WHERE id_konser = {$idKonser}"; // Ensure the ID is an integer to prevent SQL injection
+                $sqltiket = "SELECT * FROM tiket_data WHERE id_konser = {$idKonser}";
                 $result = mysqli_query($conn, $sqltiket);
                 if ($result && mysqli_num_rows($result) > 0) {
-                    $count = 0; // Counter to track the number of boxes in a row
+                    $count = 0;
                     while ($tiket = mysqli_fetch_assoc($result)) {
                         echo '<tr>';
                         $id_tiket = $tiket['id_tiket'];
@@ -165,25 +167,17 @@
                                     <input type='hidden' name='id_tiket' value='{$id_tiket}'>
                                     <button type='submit'>Pesan Sekarang</button>
                                   </form>";
-                            // echo "<button onclick='navigateToPage()'>Pesan Sekarang</button>
-                            // <script>
-                            //         function navigateToPage() {
-                            //             window.location.href = 'konfirmasitiket.php?id_konser=$idKonser';
-                            //         }
-                            // </script>";
-
-//                             echo "<button onclick='navigateToPage({$id_tiket})'>Pesan Sekarang</button>";
                         } else {
                             echo "<button onclick='navigateToPage({$id_tiket})' disabled>Stok Habis</button>";
                             }
                         $count++;
                     }
                     echo '</td>
-                    </tr>'; // Close the last row
+                    </tr>'; 
                 } else {
                     echo "Tidak ada tiket tersedia.";
                     if (!$result) {
-                        echo "Error: " . mysqli_error($conn); // Output any SQL error for debugging
+                        echo "Error: " . mysqli_error($conn); 
                     }
                 }
             ?>

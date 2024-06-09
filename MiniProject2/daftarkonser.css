@@ -64,3 +64,45 @@ div.judulposter a:hover{
     color: #f2796e;
 }
 
+.konserterkini table {
+    width: 80%;
+    border-collapse: collapse;
+}
+.konserterkini td {
+    padding: 10px;
+    text-align: center;
+}
+.konserterkini img.ukuranposter {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.konserterkini table .judulposter {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #5893a5;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+footer p {
+    margin: 10px 0;
+    font-size: 25px;
+}
+
+footer table {
+    margin: 0 auto;
+    text-align: center;
+}
+
+footer .logososmed img {
+    width: 30px;
+    margin: 0 10px;
+    background-color: #f9fff3;
+    border-radius: 20px;
+    padding: 10px;
+}

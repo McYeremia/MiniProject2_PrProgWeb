@@ -48,27 +48,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harmoni Konser Indonesia</title>
     <link rel="stylesheet" href="indexcss.css">
-    <style>
-        .konserterkini table {
-            width: 80%;
-            border-collapse: collapse;
-        }
-        .konserterkini td {
-            padding: 10px;
-            text-align: center;
-        }
-        .konserterkini img.ukuranposter {
-            /* width: 300px;
-            height: 400px; */
-            object-fit: cover;
-        }
-
-        .konserterkini table .judulposter {
-            margin-top: 5px;
-            font-size: 17px;
-        }
-    
-    </style>
 </head>
 <body>
     <header>
@@ -80,10 +59,12 @@
             if (!isset($_SESSION["login"])) {
                 ?>
                 <a href="akun.php" class="pilihan">Login</a>
+                <a href="signup.php" class="pilihan">Sign Up</a>
                 <?php
             }else{
                 ?>
                 <a href="akun.php" class="pilihan">Akun</a>
+                <a href="logout.php" class="pilihan">Logout</a>
                 <?php   
             }
         ?>
