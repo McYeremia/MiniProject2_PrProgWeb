@@ -4,19 +4,27 @@
     require "functions.php";
 
     $nama_konser = isset($_POST['carinamakonser']) ? $_POST['carinamakonser'] : '';
+    $nama_artis = isset($_POST['carinamaartis']) ? $_POST['carinamaartis'] : '';
     $tanggal_konser = isset($_POST['tanggalkonser']) ? $_POST['tanggalkonser'] : '';
     $lokasi_konser = isset($_POST['lokasikonser']) ? $_POST['lokasikonser'] : '';
 
+
     $nama_konser = mysqli_real_escape_string($conn, $nama_konser);
+    $nama_artis = mysqli_real_escape_string($conn, $nama_artis);
     $tanggal_konser = mysqli_real_escape_string($conn, $tanggal_konser);
     $lokasi_konser = mysqli_real_escape_string($conn, $lokasi_konser);
 
 
-    $sql = "select konser_data.id_konser, poster, tanggal_awal, tanggal_akhir, judul, MIN(tiket_data.harga) AS harga_terendah FROM konser_data LEFT JOIN tiket_data ON konser_data.id_konser = tiket_data.id_konser WHERE tanggal_akhir >= CURDATE()";
+    $sql = "select konser_data.id_konser, poster, tanggal_awal, tanggal_akhir, judul, MIN(tiket_data.harga) AS harga_terendah FROM konser_data NATURAL JOIN featuring NATURAL JOIN artis LEFT JOIN tiket_data ON konser_data.id_konser = tiket_data.id_konser WHERE tanggal_akhir >= CURDATE()";
 
     if (!empty($nama_konser)) {
         $sql .= " AND judul LIKE '%$nama_konser%'";
     }
+
+    if (!empty($nama_artis)) {
+        $sql .= " AND artis.nama_artis LIKE '%$nama_artis%'";
+    }
+
     if (!empty($tanggal_konser)) {
         $sql .= " AND '$tanggal_konser' BETWEEN tanggal_awal AND tanggal_akhir";
     }
@@ -25,8 +33,11 @@
         $sql .= " OR venue LIKE '%$lokasi_konser%'";
     }
     $sql .= " GROUP BY konser_data.id_konser";
+
     
     $result = mysqli_query($conn, $sql);
+
+    
     
 ?>
 
@@ -95,6 +106,9 @@
                 <tr>
                     <td>
                         <input type="text" class="input" id="carinamakonser" name="carinamakonser"  placeholder="masukkan nama konser">
+                    </td>
+                    <td>
+                        <input type="text" class="input" id="carinamaartis" name="carinamaartis"  placeholder="masukkan nama artis">
                     </td>
                     <td>
                         <input type="date" class="input" id="tanggalkonser" name="tanggalkonser">

@@ -80,6 +80,9 @@
                         <input type="text" class="input" id="carinamakonser" name="carinamakonser"  placeholder="masukkan nama konser">
                     </td>
                     <td>
+                        <input type="text" class="input" id="carinamaartis" name="carinamaartis"  placeholder="masukkan nama artis">
+                    </td>
+                    <td>
                         <input type="date" class="input" id="tanggalkonser" name="tanggalkonser">
                     </td>
                     <td>
