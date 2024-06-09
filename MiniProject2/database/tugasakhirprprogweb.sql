@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 01:44 PM
+-- Generation Time: Jun 09, 2024 at 08:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -139,6 +139,13 @@ CREATE TABLE `pembelian` (
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pembelian`
+--
+
+INSERT INTO `pembelian` (`id_pembelian`, `id_konser`, `id_tiket`, `jumlah`, `id_user`) VALUES
+(4, 1, 3, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -154,6 +161,14 @@ CREATE TABLE `pemesanan_data` (
   `no_HP` varchar(20) NOT NULL,
   `id_tiket` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pemesanan_data`
+--
+
+INSERT INTO `pemesanan_data` (`id_data_pemesanan`, `id_pembelian`, `nama_depan`, `nama_belakang`, `email`, `no_HP`, `id_tiket`) VALUES
+(3, 4, 'David', 'Priantara', 'David.Alan@email.Com', '0819', 3),
+(4, 4, 'Amelia', 'Aftiana', 'Amel.Putri@email.com', '08199', 3);
 
 -- --------------------------------------------------------
 
@@ -176,7 +191,7 @@ CREATE TABLE `tiket_data` (
 INSERT INTO `tiket_data` (`id_tiket`, `jenis_tiket`, `id_konser`, `harga`, `stok`) VALUES
 (1, 'Presale 1', 1, 55000, 100),
 (2, 'Presale 2', 1, 75000, 85),
-(3, 'VIP', 1, 100000, 50),
+(3, 'VIP', 1, 100000, 48),
 (4, 'Festival B (Standing)', 2, 588000, 500),
 (5, 'Festival (Standing)', 2, 900000, 580),
 (6, 'Golden Festival (Standing)', 2, 1140000, 600),
@@ -335,13 +350,13 @@ ALTER TABLE `konser_data`
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pemesanan_data`
 --
 ALTER TABLE `pemesanan_data`
-  MODIFY `id_data_pemesanan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_data_pemesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tiket_data`

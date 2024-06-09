@@ -29,6 +29,7 @@
     $lokasiKonser = $detailKonser['kota'];
     $venueKonser = $detailKonser['venue'];
     $posterKonser = $detailKonser['poster'];
+    $hargaTiketFormat = $hargaTiket ? number_format($hargaTiket, 0, ',', '.') : 'Tidak Tersedia';
 
 ?>
 
@@ -102,7 +103,10 @@
             <tr>
                 <td>
                     <hr>
-                    <h2><?php echo $tiketDipilih?></h2>
+                    <?php 
+                    $output = $tiketDipilih. " - Rp. " .$hargaTiketFormat; 
+                    ?>
+                    <h2><?php echo $output ?></h2>
                 </td>
             </tr>
         </table>
@@ -147,7 +151,7 @@
             <tr>
                 <td>
                     <div class="tombolpesan">
-                        <form method="post" action="pemesanan.php">
+                        <form id="orderForm-<?php echo $idTiket; ?>" method="post" onsubmit="updateFormAction(<?php echo $idTiket; ?>,<?php echo $idKonser; ?>)">
                             <button class="btn2" type="submit" name="logout">Pesan</button>
                         </form>
                     </div>
@@ -194,4 +198,11 @@
         let totalPrice = hargaTiket * quantity;
         totalPriceElement.innerText = 'Rp ' + totalPrice.toLocaleString('id-ID');
     }
+
+    function updateFormAction(idTiket, idKonser) {
+            var quantity = document.getElementById('quantity-' + idTiket).value;
+            var form = document.getElementById('orderForm-' + idTiket);
+            form.action = 'pemesanan.php?id_tiket=' + idTiket + '&jumlah=' + quantity + '&id_konser=' + idKonser;
+        }
+    
 </script>

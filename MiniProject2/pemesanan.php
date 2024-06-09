@@ -1,14 +1,39 @@
 <?php
 session_start();
 
-///cek login
-if (!isset($_SESSION["login"])){
-    header("Location: login.php");
-    exit;
-}
+    ///cek login
+    if (!isset($_SESSION["login"])){
+        header("Location: login.php");
+        exit;
+    }
 
-require "functions.php";
+    require "functions.php";
 
+    $idKonser = $_GET['id_konser'];
+    $idTiket = $_GET['id_tiket'];
+    $jumlah = $_GET['jumlah'];
+
+    $result = mysqli_query($conn, "SELECT * FROM konser_data WHERE id_konser = $idKonser");
+    $ambilStok = mysqli_query($conn, "SELECT * FROM tiket_data WHERE id_tiket = $idTiket");
+
+    $stokJenisTiket = mysqli_fetch_assoc($ambilStok);
+    $stok = $stokJenisTiket['stok'];
+    $tiketDipilih = $stokJenisTiket['jenis_tiket'];
+    $hargaTiket = $stokJenisTiket['harga'];
+
+
+    $detailKonser = mysqli_fetch_assoc($result);
+    $namaKonser = $detailKonser['judul'];
+    $deskripsiKonser = $detailKonser['description'];
+    $tanggalKonserAwal = $detailKonser['tanggal_awal'];
+    $tanggalKonserAkhir = $detailKonser['tanggal_akhir'];
+    $lokasiKonser = $detailKonser['kota'];
+    $venueKonser = $detailKonser['venue'];
+    $posterKonser = $detailKonser['poster'];
+    $hargaTiketFormat = $hargaTiket ? number_format($hargaTiket, 0, ',', '.') : 'Tidak Tersedia';
+
+    $hargaTotal = $hargaTiket * $jumlah;
+    $hargaTotalFormat = $hargaTotal ? number_format($hargaTotal, 0, ',', '.') : 'Tidak Tersedia';
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +43,32 @@ require "functions.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pemesanan tiket</title>
     <link rel="stylesheet" href="pemesanan.css">
+    <script>
+        function validateForm() {
+            const phoneNumbers = new Set();
+            const jumlah = <?php echo $jumlah; ?>;
+            for (let i = 0; i < jumlah; i++) {
+                const phoneInput = document.getElementById(`nomortelepon${i}`);
+                const phoneValue = phoneInput.value.trim();
+
+                // Check if phone number is numeric
+                if (!/^\d+$/.test(phoneValue)) {
+                    alert(`Nomor telepon ${i + 1} harus berupa angka.`);
+                    phoneInput.focus();
+                    return false;
+                }
+
+                // Check for duplicate phone numbers
+                if (phoneNumbers.has(phoneValue)) {
+                    alert(`Nomor telepon ${i + 1} duplikat. Masukkan nomor yang berbeda.`);
+                    phoneInput.focus();
+                    return false;
+                }
+                phoneNumbers.add(phoneValue);
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -30,52 +81,90 @@ require "functions.php";
                 ?>
                 <a href="akun.php" class="pilihan">Login</a>
                 <?php
-            }else{
+            } else {
                 ?>
                 <a href="akun.php" class="pilihan">Akun</a>
                 <?php   
             }
         ?>
     </header>
+    
+    <div class="tabelkonser">
+        <table border="0">
+            <tr>
+                <td>
+                    <img src="<?php echo $posterKonser ?>" alt="posterkonser">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4><?php echo $namaKonser ?></h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4><?php echo $tiketDipilih ?> - <?php echo $jumlah ?> Tiket</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Harga Tiket: <?php echo $hargaTiketFormat ?> / Tiket</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Total: <?php echo $hargaTotalFormat ?></h3>
+                </td>
+            </tr>
+        </table>
+    </div>
+
     <div class="container">
-        <div class="header">
-            <h1>PEMESANAN TIKET</h1>
-            <form>
-                <table border="0">
-                    <tr>
-                        <label for="nama">Masukan nama anda</label><br>
-                        <input type="text" name="nama" id="nama" placeholder="Masukan nama"><br><br>
-                    </tr>
-                    <tr>
-                        <label for="nomortelepon">Masukan nomor telepon</label><br>
-                        <input type="tel" name="nomortelepon" id="nomortelepon" placeholder="Masukan nomor telepon"><br><br>
-                    </tr>
-                    <tr>
-                        <label for="email">Masukan email anda</label><br>
-                        <input type="email" name="email" id="email" placeholder="Masukan email anda"><br><br>
-                    </tr>
-                    <tr>
-                        <label for="konser">Masukan nama konser</label><br>     
-                        <input type="text" name="konser" id="konser" placeholder="Masukan nama konser"> <br><br>  
-                    </tr>
-                    <tr>
-                        <label for="tanggal">Masukan tanggal konser</label><br>
-                        <input type="date" name="tanggal" id="tanggal"><br><br>
-                    </tr>
-                    <tr>
-                        <label for="jumlah">Masukan jumlah tiket</label><br>
-                        <input type="number" name="jumlah" id="jumlah" placeholder="Masukan jumlah tiket" min="1" ><br><br>
-                    </tr>
-                    
-                </table>
-                <button type="submit">Pesan Tiket</button><br><br>
-                <img src="gambar/LogoHKputihHitam.png" alt="logo">
-
-        </div>
-        <div class="content">
-    
-    
-
-    
+        <form action="submit_order.php" method="post" onsubmit="return validateForm()">
+            <input type="hidden" name="id_konser" value="<?php echo $idKonser; ?>">
+            <input type="hidden" name="id_tiket" value="<?php echo $idTiket; ?>">
+            <input type="hidden" name="jumlah" value="<?php echo $jumlah; ?>">
+            <input type="hidden" name="stok" value="<?php echo $stok; ?>">
+            <table border="0">
+                <?php
+                for ($i = 0; $i < $jumlah; $i++) {?>
+                    <table border="0">
+                            <thead>
+                                <h1>Data Diri <?php echo $i + 1 ?></h1>
+                            </thead>
+                            <tr>
+                                <label for="namaDepan<?php echo $i ?>">Masukan nama depan </label><br>
+                                <input type="text" name="namaDepan<?php echo $i ?>" id="namaDepan<?php echo $i ?>" placeholder="Masukan nama depan" required><br><br>
+                            </tr>
+                            <tr>
+                                <label for="namaBelakang<?php echo $i ?>">Masukan nama belakang</label><br>
+                                <input type="text" name="namaBelakang<?php echo $i ?>" id="namaBelakang<?php echo $i ?>" placeholder="Masukan nama belakang" required><br><br>
+                            </tr>
+                            <tr>
+                                <label for="nomortelepon<?php echo $i ?>">Masukan nomor telepon</label><br>
+                                <input type="text" name="nomortelepon<?php echo $i ?>" id="nomortelepon<?php echo $i ?>" placeholder="Masukan nomor telepon" required><br><br>
+                            </tr>
+                            <tr>
+                                <label for="email<?php echo $i ?>">Masukan email anda</label><br>
+                                <input type="email" name="email<?php echo $i ?>" id="email<?php echo $i ?>" placeholder="Masukan email anda" required><br><br>
+                                </hr>
+                            </tr>                   
+                        </table>
+                        <?php 
+                }
+                ?>
+                <tr>
+                    <td>
+                        <button type="submit">Pesan Tiket</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>

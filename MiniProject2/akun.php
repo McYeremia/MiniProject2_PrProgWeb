@@ -137,19 +137,26 @@
                 </tr>
             </thead>
             <!-- !!!Jangan Di Hapus!!! -->
-            <!-- <div class="tabeltiketuserisi">
-                <?php $resultpemesanan = mysqli_query($conn, "SELECT * FROM tiket_data WHERE id_user = '$user_id'");?>
+            <div class="tabeltiketuserisi">
+                <?php $resultpemesanan = mysqli_query($conn, "SELECT * FROM pembelian WHERE id_user = '$user_id'");?>
                 <?php if(isset($resultpemesanan)) :?>
                     <?php while($infotiket = mysqli_fetch_assoc($resultpemesanan)) : 
+                        $id_pembelian = $infotiket['id_pembelian'];
                         $jumlahtiket = $infotiket['jumlah'];
                         $id_konser = $infotiket['id_konser'];                                                                    
                         $resultkonser = mysqli_query($conn, "SELECT * FROM konser_data WHERE id_konser = '$id_konser'");
 
                         if(mysqli_num_rows($resultkonser) === 1){
                             $infokonser = mysqli_fetch_assoc($resultkonser);
-                            $judulkonser = $infokonser['nama_konser'];
-                            $lokasikonser = $infokonser['lokasi_konser'];
-                            $tanggalkonser = $infokonser['tanggal_konser'];
+                            $judulkonser = $infokonser['judul'];
+                            $lokasikonser = $infokonser['venue']. " - " .$infokonser['kota'];
+                            $tanggalKonserAwal = $infokonser['tanggal_awal'];
+                            $tanggalKonserAkhir = $infokonser['tanggal_akhir'];
+                            if($tanggalKonserAwal == $tanggalKonserAkhir){
+                                $tanggalKonser = $tanggalKonserAwal;
+                            } else {
+                                $tanggalKonser = $tanggalKonserAwal. " - " .$tanggalKonserAkhir;
+                            }
                         }
                     ?>
                 <tr>
@@ -169,8 +176,8 @@
                     </td>
                     <td>
                         <?php
-                            if(isset($tanggalkonser)){
-                                echo $tanggalkonser;
+                            if(isset($tanggalKonser)){
+                                echo $tanggalKonser;
                             }
                         ?>
                     </td>
@@ -184,7 +191,7 @@
                 </tr>
                     <?php endwhile;?>
                 <?php endif;?>
-            </div> -->
+            </div>
             <!-- !!!Jangan Di Hapus!!! -->
         </table>
     </div>
