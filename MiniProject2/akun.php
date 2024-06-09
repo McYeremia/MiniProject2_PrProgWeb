@@ -12,12 +12,10 @@
 
     $result = mysqli_query($conn, "SELECT * FROM user_data WHERE username = '$username'");
     $user = mysqli_fetch_assoc($result);
-    $password = $user['password'];
     $email = $user['email'];
     $user_id = $user['id_user'];
 
-    $hitungpanjangpassword = strlen($password);
-    $penutuppassword = str_repeat('•', $hitungpanjangpassword);
+
 ?> 
 
 <!DOCTYPE html>
@@ -35,6 +33,7 @@
         <a href="daftarkonser.php" class="pilihan">Semua Konser</a>
         <a href="tentang.php" class="pilihan">Tentang</a>
         <a href="akun.php" class="pilihan">Akun</a>
+        <a href="logout.php" class="pilihan">Logout</a>
     </header>
     <div class="hallouser">
         <h1>
@@ -57,18 +56,7 @@
                         <?php echo $username; ?>
                     </p>
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="tabelakun">
-                        Password :
-                    </p>
-                </td>
-                <td>
-                    <p class="tabelakun">
-                        <?php echo $penutuppassword; ?>
-                    </p>
-                </td>
+            </tr>  
             <tr>
                 <td>
                     <p class="tabelakun">
@@ -120,7 +108,7 @@
                             Tipe Tiket
                         </h4>
                     </td>
-                    <td>
+                    <td colspan="2">
                         <h4>
                             Aksi
                         </h4>
@@ -156,6 +144,15 @@
                     <td><?php echo $tanggalKonser; ?></td>
                     <td><?php echo $jumlahtiket; ?></td>
                     <td><?php echo $jenis_tiket; ?></td>
+                    <td>
+                        <form method="get" action="edit_tiket.php" onsubmit="return confirmEdit()">
+                            <input type="hidden" name="id_pembelian" value="<?php echo $id_pembelian; ?>">
+                            <input type="hidden" name="id_konser" value="<?php echo $id_konser; ?>">
+                            <input type="hidden" name="jumlah" value="<?php echo $jumlahtiket; ?>">
+                            <input type="hidden" name="id_tiket" value="<?php echo $infotiket['id_tiket']; ?>">
+                            <button class="edit" type="submit" name="edit">Edit</button>
+                        </form>
+                    </td>
                     <td>
                         <form method="post" action="delete_ticket.php" onsubmit="return confirmDelete()">
                             <input type="hidden" name="id_pembelian" value="<?php echo $id_pembelian; ?>">

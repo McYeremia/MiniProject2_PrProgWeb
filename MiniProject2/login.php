@@ -17,10 +17,11 @@ if (isset($_POST["login"])){
 
     if(mysqli_num_rows($result) === 1){
         $row = mysqli_fetch_assoc($result);
-        if($password === $row["password"]){
+        if(password_verify($password, $row["password"])){
 
             $_SESSION["login"] = true;
             $_SESSION["username"] = $username;
+            $_SESSION["password"] = $password;
 
             header("Location: index.php");
 
@@ -47,10 +48,9 @@ if (isset($_POST["login"])){
   <header>
     <img src="gambar/LogoHKputihhitam.png" alt="LogoHKputih">
     <a href="index.php" class="pilihan">Home</a>
-
     <a href="daftarkonser.php" class="pilihan">Semua Konser</a>
     <a href="tentang.php" class="pilihan">Tentang</a>
-
+    <a href="signup.php" class="pilihan">Sign Up</a>
   </header>
 
   <div class="bgatas">

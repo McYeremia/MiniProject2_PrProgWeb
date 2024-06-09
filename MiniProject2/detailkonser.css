@@ -36,20 +36,6 @@ body {
     background-color: #f9fff3;
 }
 
-/* .listkonser table{
-    margin: 0 auto;
-}
-
-.listkonser table td{
-    padding-left: 10px;
-    margin: -1px;
-    height: 60px;
-} */
-
-/* .listkonser table td{
-    padding-left: 10px;
-    top: 0px;
-} */
 
 .posterkonser{
     width: 150px;
@@ -60,8 +46,6 @@ body {
     margin: 0;
 }
 .gambar{
-    /* max-width: 300px;
-    max-height: 400px; */
     width: 240pt;
     margin-left: 0pt;
     border-radius: 10pt;
@@ -143,7 +127,6 @@ body {
     padding: 5px;
     width: 800px;
     border-collapse: collapse;
-    /* float: right; */
     margin-bottom: 50px;
     margin-top: 20px;
 
@@ -243,12 +226,12 @@ button:disabled {
 
 footer {
     background-color: #5893a5;
-    padding: 10px 20px; /* Adjust padding for spacing */
+    padding: 10px 20px;
     text-align: center;
 }
 
 footer p {
-    margin: 10px 0; /* Adjust margin for spacing */
+    margin: 10px 0;
     font-size: 25px;
 }
 

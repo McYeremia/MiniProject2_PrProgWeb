@@ -51,10 +51,12 @@
             if (!isset($_SESSION["login"])) {
                 ?>
                 <a href="akun.php" class="pilihan">Login</a>
+                <a href="signup.php" class="pilihan">Sign Up</a>
                 <?php
             }else{
                 ?>
                 <a href="akun.php" class="pilihan">Akun</a>
+                <a href="logout.php" class="pilihan">Logout</a>
                 <?php   
             }
         ?>

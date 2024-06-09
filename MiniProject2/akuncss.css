@@ -155,12 +155,12 @@ footer{
 
 footer {
     background-color: #5893a5;
-    padding: 10px 20px; /* Adjust padding for spacing */
+    padding: 10px 20px;
     text-align: center;
 }
 
 footer p {
-    margin: 10px 0; /* Adjust margin for spacing */
+    margin: 10px 0;
     font-size: 25px;
 }
 
@@ -194,4 +194,23 @@ footer .logososmed img {
     background-color: transparent;
     color: rgba(0, 0, 0, 1);
 }
-      
+ 
+
+.edit{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #000;
+    border-radius: 9999px;
+    background-color: rgba(0, 0, 0, 1);
+    padding: 0.625rem 1.5rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+    outline: 0;
+    transition: all  .2s ease;
+    text-decoration: none;
+}
+.edit:hover[type='submit']{
+    background-color: transparent;
+    color: rgba(0, 0, 0, 1);
+}

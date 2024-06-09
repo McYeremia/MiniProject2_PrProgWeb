@@ -51,14 +51,12 @@ session_start();
                 const phoneInput = document.getElementById(`nomortelepon${i}`);
                 const phoneValue = phoneInput.value.trim();
 
-                // Check if phone number is numeric
                 if (!/^\d+$/.test(phoneValue)) {
                     alert(`Nomor telepon data diri ${i + 1} harus berupa angka.`);
                     phoneInput.focus();
                     return false;
                 }
 
-                // Check for duplicate phone numbers
                 if (phoneNumbers.has(phoneValue)) {
                     alert(`Nomor telepon data diri ${i + 1} duplikat. Masukkan nomor yang berbeda.`);
                     phoneInput.focus();
@@ -80,10 +78,12 @@ session_start();
             if (!isset($_SESSION["login"])) {
                 ?>
                 <a href="akun.php" class="pilihan">Login</a>
+                <a href="signup.php" class="pilihan">Sign Up</a>
                 <?php
             } else {
                 ?>
                 <a href="akun.php" class="pilihan">Akun</a>
+                <a href="logout.php" class="pilihan">Logout</a>
                 <?php   
             }
         ?>
