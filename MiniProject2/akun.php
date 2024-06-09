@@ -117,6 +117,11 @@
                     </td>
                     <td>
                         <h4>
+                            Tipe Tiket
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
                             Aksi
                         </h4>
                     </td>
@@ -124,12 +129,13 @@
             </thead>
             <tbody class="tabeltiketuserisi">
                 <?php
-                $resultpemesanan = mysqli_query($conn, "SELECT * FROM pembelian WHERE id_user = '$user_id'");
+                $resultpemesanan = mysqli_query($conn, "SELECT * FROM pembelian NATURAL JOIN tiket_data WHERE id_user = '$user_id'");
                 if(isset($resultpemesanan)) :
                     while($infotiket = mysqli_fetch_assoc($resultpemesanan)) :
                         $id_pembelian = $infotiket['id_pembelian'];
                         $jumlahtiket = $infotiket['jumlah'];
-                        $id_konser = $infotiket['id_konser'];                                                                    
+                        $id_konser = $infotiket['id_konser'];     
+                        $jenis_tiket = $infotiket['jenis_tiket'];                                                           
                         $resultkonser = mysqli_query($conn, "SELECT * FROM konser_data WHERE id_konser = '$id_konser'");
                         if(mysqli_num_rows($resultkonser) === 1){
                             $infokonser = mysqli_fetch_assoc($resultkonser);
@@ -149,6 +155,7 @@
                     <td><?php echo $lokasikonser; ?></td>
                     <td><?php echo $tanggalKonser; ?></td>
                     <td><?php echo $jumlahtiket; ?></td>
+                    <td><?php echo $jenis_tiket; ?></td>
                     <td>
                         <form method="post" action="delete_ticket.php" onsubmit="return confirmDelete()">
                             <input type="hidden" name="id_pembelian" value="<?php echo $id_pembelian; ?>">
