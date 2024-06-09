@@ -53,14 +53,14 @@ session_start();
 
                 // Check if phone number is numeric
                 if (!/^\d+$/.test(phoneValue)) {
-                    alert(`Nomor telepon ${i + 1} harus berupa angka.`);
+                    alert(`Nomor telepon data diri ${i + 1} harus berupa angka.`);
                     phoneInput.focus();
                     return false;
                 }
 
                 // Check for duplicate phone numbers
                 if (phoneNumbers.has(phoneValue)) {
-                    alert(`Nomor telepon ${i + 1} duplikat. Masukkan nomor yang berbeda.`);
+                    alert(`Nomor telepon data diri ${i + 1} duplikat. Masukkan nomor yang berbeda.`);
                     phoneInput.focus();
                     return false;
                 }
@@ -166,5 +166,32 @@ session_start();
             </table>
         </form>
     </div>
+    <footer>
+        <div class="socialmedia">
+            <p>Follow Us!</p>
+            <div class="logososmed">
+                <table border="0">
+                    <tr>
+                        <td>
+                            <a href="https://www.facebook.com"><img src="logososmed/facebook.png" alt="fb"></a>
+                        </td>
+                        <td>
+                            <a href="https://www.instagram.com/"><img src="logososmed/instagram (2).png" alt="ig"></a>
+                        </td>
+                        <td>
+                            <a href="https://www.tiktok.com/id-ID/"><img src="logososmed/tiktok.png" alt="tiktok"></a>
+                        </td>
+                        <td>
+                            <a href="https://x.com/?lang=en"><img src="logososmed/twitter.png" alt="x"></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <p id="reg">&reg;Harmoni Musik Indonesia 2024</p>
+        </div>
+    </footer>
 </body>
 </html>
